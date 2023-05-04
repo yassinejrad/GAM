@@ -12,7 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { UserComponent } from './pages/user/user.component';
-import { authInterceptorProviders } from './helpers/auth.interceptor';
+
 
 @NgModule({
   imports: [
@@ -30,7 +30,7 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
     AuthLayoutComponent,
     UserComponent
   ],
-  providers: [authInterceptorProviders],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,11 +22,11 @@
         <div class="card-header bg-transparent pb-5">
           <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
           <div class="btn-wrapper text-center">
-            <a href="{{ googleURL }}" class="btn btn-neutral btn-icon">
+            <a href="" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
               <span class="btn-inner--text">Github</span>
             </a>
-            <a href="{{ githubURL }}" class="btn btn-neutral btn-icon">
+            <a href="" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
               <span class="btn-inner--text">Google</span>
             </a>
@@ -36,14 +36,13 @@
           <div class="text-center text-muted mb-4">
             <small>Or sign in with credentials</small>
           </div>
-          <form  *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <form  #loginForm="ngForm" (ngSubmit)="login(loginForm)">
             <div class="form-group mb-3">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input class="form-control" placeholder="Email" type="email" name="username" [(ngModel)]="form.username" required #username="ngModel">
-                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && username.invalid">Username is required!</div>
+                <input class="form-control" placeholder="Email" type="email" ngModel name="userName" id="userName">
               </div>
             </div>
             <div class="form-group">
@@ -51,18 +50,18 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input class="form-control" placeholder="Password" type="password" name="password" [(ngModel)]="form.password" required minlength="6"
-                #password="ngModel">
+                <input class="form-control" placeholder="Password" type="password" ngModel name="userPassword" id="userPassword">
               </div>
             </div>  
             <div class="text-center">
-              <button type="button" class="btn btn-primary my-4">Sign in</button>
+              <button type="submit" value="Login" class="btn btn-primary my-4">Sign in</button>
             </div>
-            <div class="form-group">
-              <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed">Login failed: {{ errorMessage }}</div>
-            </div>
+            <div class="alert alert-danger" role="alert" *ngIf=" isLogged == false">
+              <strong>Please verify your credentials ! </strong> 
+          </div>
+            
           </form>
-          <div class="alert alert-success" *ngIf="isLoggedIn">Welcome {{currentUser.displayName}} <br>Logged in as {{ currentUser.roles }}.</div>
+          
         </div>
       </div>
       <div class="row mt-3">
